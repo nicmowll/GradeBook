@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"murach.card","l":"Card"},{"p":"murach.ui","l":"Main"},{"p":"murach.card","l":"Suit"}];updateSearchResults();
