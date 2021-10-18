@@ -1,3 +1,8 @@
+/* Name: Nic Mowll
+ * Class: CodertoCraftsman
+ * Assignment: GradeBook Part 1
+ * Date: 10/18/2021
+ */
 package GradeBook.Classes;
 
 import GradeBook.Exception.*;
@@ -11,48 +16,48 @@ public class GradeBook {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		print.Welcome();
+		Print.Welcome();
 		
 		int size = -1;
-		int arrayCounter = 0;
+		int arrayCounter = 0; //keeps track of position in array when adding/removing grades
 		
 		//retieves size of array
 		while (size == -1) {
 			size = getSize();
 		}
 
-		//initializes the array
+		//initializes the array and sets all values to null
 		AssignmentInterface[] array = new AssignmentInterface[size];
 		for(int i = 0; i < array.length; i++) {
 			array[i] = null;
 		}
 		
-		boolean done = false;
-		String finish;
+		boolean done = false; //used in keeping display up until user wants to go back to the menu
+		String finish; //       ""      ""         ""           ""             ""            ""
 
 		//uses a switchcase in a while loop to keep program active and allow user to pick actions
 		int input = -1;
 		while(input != 0) {
-			print.clearScreen();
+			Print.clearScreen(); 
 			System.out.print("\nCreated GradeBook with " + size + " Grade Spaces!\n");
-			print.Menu();
-			print.Enter();
+			Print.Menu(); //prints menu
+			Print.Enter();
 			
 			input = -1;
 			while (input == -1) {
-				input = getInput();
+				input = getInput(); //call getInput method which catches potential exceptions
 			}
 			
 			switch(input) {
-			case 0:
-				print.exit();
+			case 0: //quits program
+				Print.exit(); //exits
 				break;
 			case 1: //add grades
-				array = addGrade(array, arrayCounter);
+				array = addGrade(array, arrayCounter); //calls add grade function
 				arrayCounter++;
 				finish = " ";
 				while(finish.equals(" ")) {
-					finish = print.finishGo(); //method finishGo keeps the display up and allows user to enter go to go back to menu
+					finish = Print.finishGo(); //method finishGo keeps the display up and allows user to enter go to go back to menu
 				}
 				if(finish.equals("go")) {
 					done = true;
@@ -64,11 +69,11 @@ public class GradeBook {
 					array = removeGrade(array);
 					finish = " ";
 					while(finish.equals(" ")) {
-						finish = print.finish();
+						finish = Print.finishReEnter(); //allows user to re-enter if they incorrectly entered the wrong assignment name
 					}
 					if(finish.equals("go")) {
 						done = true;
-						boolean incremented = false;
+						boolean incremented = false; //this block of code makes sure the counter is in the right place after removing a grade
 						for(int i = 0; i < array.length; i++) {
 							if(incremented == false) {
 								if(array[i] == null) {
@@ -81,60 +86,60 @@ public class GradeBook {
 				}
 				break;
 			case 3: //print grades
-				printGrades(array);
+				printGrades(array); //calls method to print grades
 				finish = " ";
 				while(finish.equals(" ")) {
-					finish = print.finishGo();
+					finish = Print.finishGo();
 				}
 				if(finish.equals("go")) {
 					done = true;
 				}
 				break;
 			case 4: //print average
-				printAverage(array);
+				printAverage(array); //calls method to print grade avg
 				finish = " ";
 				while(finish.equals(" ")) {
-					finish = print.finishGo();
+					finish = Print.finishGo();
 				}
 				if(finish.equals("go")) {
 					done = true;
 				}
 				break;
 			case 5: //print highest/lowest
-				printHighLow(array);
+				printHighLow(array); //calls method to print highest and lowest grade scores
 				finish = " ";
 				while(finish.equals(" ")) {
-					finish = print.finishGo();
+					finish = Print.finishGo();
 				}
 				if(finish.equals("go")) {
 					done = true;
 				}
 				break;
 			case 6: //print quiz question average
-				printQuizAvg(array);
+				printQuizAvg(array); //calls method to print quiz question avg
 				finish = " ";
 				while(finish.equals(" ")) {
-					finish = print.finishGo();
+					finish = Print.finishGo();
 				}
 				if(finish.equals("go")) {
 					done = true;
 				}
 				break;
 			case 7: //print discussion associated readings
-				printReadings(array);
+				printReadings(array); //calls method that prints all readings for the discussions
 				finish = " ";
 				while(finish.equals(" ")) {
-					finish = print.finishGo();
+					finish = Print.finishGo();
 				}
 				if(finish.equals("go")) {
 					done = true;
 				}
 				break;
 			case 8: //print program concepts
-				printConcepts(array);
+				printConcepts(array); //calls method that prints all concepts for Programs
 				finish = " ";
 				while(finish.equals(" ")) {
-					finish = print.finishGo();
+					finish = Print.finishGo();
 				}
 				if(finish.equals("go")) {
 					done = true;
@@ -179,36 +184,36 @@ public class GradeBook {
 	}
 	
 	
-	//gets the size for the array, in method to not clutter main method, catches errors
+	//gets the size for the array from user, in method to not clutter main method, catches errors
 	public static int getSize() {
 		Scanner sc = new Scanner(System.in);
 		int size = -1; 
 		
 		try {
 			size = sc.nextInt();
-			if(size > 20 ^ size < 0) {
+			if(size > 20 ^ size < 1) {
 				size = -1;
-				print.WelcomeRedo();
+				Print.WelcomeRedo();
 			}
 		}
 		catch (InputMismatchException e){
-			print.WelcomeRedo();
+			Print.WelcomeRedo();
 		}
 		return size;
 	}
 	
 	
-	//gets input from main menu, catches errors
+	//gets input from main menu from user, catches errors
 	public static int getInput() {
 		Scanner sc = new Scanner(System.in);
 		
 		try {
 			int input = sc.nextInt();
 			if(input < 0 ^ input > 8) {
-				print.clearScreen();
-				print.Menu();
-				System.out.print("\n\nError: Entry must be number from 0-6.");
-				print.Enter();
+				Print.clearScreen();
+				Print.Menu();
+				System.out.print("\n\nError: Entry must be number from 0-8.");
+				Print.Enter();
 				return -1;
 			}
 			else {
@@ -216,10 +221,10 @@ public class GradeBook {
 			}
 		}
 		catch (InputMismatchException e) {
-			print.clearScreen();
-			print.Menu();
+			Print.clearScreen();
+			Print.Menu();
 			System.out.print("\n\nError: Entry must be number from 0-6.");
-			print.Enter();
+			Print.Enter();
 			return -1;
 		}
 	}
@@ -233,10 +238,10 @@ public class GradeBook {
 		try {
 			 score = sc.nextDouble();
 			 if(score < 0 ^ score > 100) {
-				 print.clearScreen();
-				 print.setVar("Score", assignment);
+				 Print.clearScreen();
+				 Print.setVar("Score (0-100)", assignment);
 				 System.out.print("\nError: Incorrect Entry, must be between 0 and 100.");
-				 print.Enter();
+				 Print.Enter();
 				 return -1;
 			 }
 			 else {
@@ -244,10 +249,10 @@ public class GradeBook {
 			 }
 		}
 		catch (InputMismatchException e){
-			print.clearScreen();
-			print.setVar("Score", assignment);
+			Print.clearScreen();
+			Print.setVar("Score (0-100)", assignment);
 			System.out.print("\nError: Incorrect Entry, must be a valid number.");
-			print.Enter();
+			Print.Enter();
 			return -1;
 		}
 		
@@ -283,6 +288,7 @@ public class GradeBook {
 	}
 	
 	
+	//prompts user to enter due date for assignment
 	public static String getDueDate(String assignment) {
 		Scanner sc = new Scanner(System.in);
 		String dueDate = sc.nextLine();
@@ -304,10 +310,10 @@ public class GradeBook {
 				}
 			}
 		}
-		print.clearScreen();
-		print.setVar("Due Date", assignment);
+		Print.clearScreen();
+		Print.setVar("Due Date (mm/dd/yyyy)", assignment);
 		System.out.print("\nError: Entry must follow date format mm/dd/yyyy.");
-		print.Enter();
+		Print.Enter();
 		return " ";
 	}
 	
@@ -323,18 +329,18 @@ public class GradeBook {
 				return numQ;
 			}
 			else {
-				print.clearScreen();
-				print.setVar("Due Date", assignment);
+				Print.clearScreen();
+				Print.setVar("Due Date", assignment);
 				System.out.print("\nError: Entry must be a number greater than 0.");
-				print.Enter();
+				Print.Enter();
 				return -1;
 			}
 		}
 		catch (InputMismatchException e){
-			print.clearScreen();
-			print.setVar("Due Date", assignment);
+			Print.clearScreen();
+			Print.setVar("Due Date", assignment);
 			System.out.print("\nError: Entry must be a number greater than 0.");
-			print.Enter();
+			Print.Enter();
 			return -1;
 		}
 	}
@@ -342,9 +348,9 @@ public class GradeBook {
 	
 	//prompts user to enter reading for assignment
 	public static String getReading(String assignment) {
-		print.clearScreen();
-		print.setVar("Reading Material", assignment);
-		print.Enter();
+		Print.clearScreen();
+		Print.setVar("Reading Material", assignment);
+		Print.Enter();
 		
 		Scanner sc = new Scanner(System.in);
 		String reading = sc.nextLine();
@@ -355,9 +361,9 @@ public class GradeBook {
 	
 	//prompts user to enter concept for assignment
 	public static String getConcept(String assignment) {
-		print.clearScreen();
-		print.setVar("Concept", assignment);
-		print.Enter();
+		Print.clearScreen();
+		Print.setVar("Concept", assignment);
+		Print.Enter();
 		
 		Scanner sc = new Scanner(System.in);
 		String concept = sc.nextLine();
@@ -381,9 +387,9 @@ public class GradeBook {
 		
 		//prints menu
 		Scanner sc = new Scanner(System.in);
-		print.clearScreen();
-		print.addGrade();
-		print.Enter();
+		Print.clearScreen();
+		Print.addGrade();
+		Print.Enter();
 		
 		int gradeNum = 0;
 		boolean inBound = false;
@@ -393,20 +399,20 @@ public class GradeBook {
 			try {
 				gradeNum = sc.nextInt();
 				if(gradeNum < 1 ^ gradeNum > 3) {
-					print.clearScreen();
-					print.addGrade();
+					Print.clearScreen();
+					Print.addGrade();
 					System.out.print("\n\nError: Invalid entry, must be from 1-3.\n");
-					print.Enter();
+					Print.Enter();
 				}
 				else {
 					inBound = true;
 				}
 			}
 			catch (InputMismatchException e) {
-				print.clearScreen();
-				print.addGrade();
+				Print.clearScreen();
+				Print.addGrade();
 				System.out.print("\n\nError: Invalid entry, must be a number.\n");
-				print.Enter();
+				Print.Enter();
 				sc.reset();
 				sc.next();
 			}
@@ -417,9 +423,9 @@ public class GradeBook {
 			Quiz quiz = new Quiz();
 			
 			double score = -1;
-			print.clearScreen();
-			print.setVar("Score", "Quiz");
-			print.Enter();
+			Print.clearScreen();
+			Print.setVar("Score (0-100)", "Quiz");
+			Print.Enter();
 			while (score == -1) { 
 				score = getScore("Quiz");
 			}
@@ -427,32 +433,32 @@ public class GradeBook {
 			
 			quiz.setLetter(getLetter(quiz.getScore()));
 			
-			print.clearScreen();
-			print.setVar("Name", "Quiz");
-			print.Enter();
+			Print.clearScreen();
+			Print.setVar("Name", "Quiz");
+			Print.Enter();
 			String name = getName("Quiz");
 			quiz.setName(name);
 			
 			String dueDate = " ";
-			print.clearScreen();
-			print.setVar("Due Date", "Quiz");
-			print.Enter();
+			Print.clearScreen();
+			Print.setVar("Due Date (mm/dd/yyyy)", "Quiz");
+			Print.Enter();
 			while (dueDate.equals(" ")) {
 				dueDate = getDueDate("Quiz");
 			}
 			quiz.setDueDate(dueDate);
 			
 			int numQuestions = -1;
-			print.clearScreen();
-			print.setVar("Number of Questions", "Quiz");
-			print.Enter();
+			Print.clearScreen();
+			Print.setVar("Number of Questions", "Quiz");
+			Print.Enter();
 			while (numQuestions == -1) {
 				numQuestions = getNumQuestions("Quiz");
 			}
 			quiz.setNumQuestions(numQuestions);
 			
-			print.clearScreen();
-			print.printAssignment(quiz);
+			Print.clearScreen();
+			Print.printAssignment(quiz);
 
 			array[arrayCounter] = quiz;
 		}
@@ -460,9 +466,9 @@ public class GradeBook {
 			Discussion discussion = new Discussion();
 			
 			double score = -1;
-			print.clearScreen();
-			print.setVar("Score", "Discussion");
-			print.Enter();
+			Print.clearScreen();
+			Print.setVar("Score (0-100)", "Discussion");
+			Print.Enter();
 			while (score == -1) { 
 				score = getScore("Discussion");
 			}
@@ -470,29 +476,29 @@ public class GradeBook {
 			
 			discussion.setLetter(getLetter(discussion.getScore()));
 			
-			print.clearScreen();
-			print.setVar("Name", "Discussion");
-			print.Enter();
+			Print.clearScreen();
+			Print.setVar("Name", "Discussion");
+			Print.Enter();
 			String name = getName("Discussion");
 			discussion.setName(name);
 			
 			String dueDate = " ";
-			print.clearScreen();
-			print.setVar("Due Date", "Discussion");
-			print.Enter();
+			Print.clearScreen();
+			Print.setVar("Due Date (mm/dd/yyyy)", "Discussion");
+			Print.Enter();
 			while (dueDate.equals(" ")) {
 				dueDate = getDueDate("Discussion");
 			}
 			discussion.setDueDate(dueDate);
 			
-			print.clearScreen();
-			print.setVar("Reading Material", "Discussion");
-			print.Enter();
+			Print.clearScreen();
+			Print.setVar("Reading Material", "Discussion");
+			Print.Enter();
 			String reading = getReading("Discussion");
 			discussion.setReading(reading);
 			
-			print.clearScreen();
-			print.printAssignment(discussion);
+			Print.clearScreen();
+			Print.printAssignment(discussion);
 			
 			array[arrayCounter] = discussion;
 		}
@@ -500,9 +506,9 @@ public class GradeBook {
 			Program program = new Program();
 			
 			double score = -1;
-			print.clearScreen();
-			print.setVar("Score", "Program");
-			print.Enter();
+			Print.clearScreen();
+			Print.setVar("Score (0-100)", "Program");
+			Print.Enter();
 			while (score == -1) { 
 				score = getScore("Program");
 			}
@@ -510,29 +516,29 @@ public class GradeBook {
 			
 			program.setLetter(getLetter(program.getScore()));
 			
-			print.clearScreen();
-			print.setVar("Name", "Program");
-			print.Enter();
+			Print.clearScreen();
+			Print.setVar("Name", "Program");
+			Print.Enter();
 			String name = getName("Program");
 			program.setName(name);
 			
 			String dueDate = " ";
-			print.clearScreen();
-			print.setVar("Due Date", "Program");
-			print.Enter();
+			Print.clearScreen();
+			Print.setVar("Due Date (mm/dd/yyyy)", "Program");
+			Print.Enter();
 			while (dueDate.equals(" ")) {
 				dueDate = getDueDate("Program");
 			}
 			program.setDueDate(dueDate);
 			
-			print.clearScreen();
-			print.setVar("Concept", "Program");
-			print.Enter();
+			Print.clearScreen();
+			Print.setVar("Concept", "Program");
+			Print.Enter();
 			String concept = getConcept("Program");
 			program.setConcept(concept);
 			
-			print.clearScreen();
-			print.printAssignment(program);
+			Print.clearScreen();
+			Print.printAssignment(program);
 			
 			array[arrayCounter] = program;
 		}
@@ -556,8 +562,8 @@ public class GradeBook {
 		Scanner sc = new Scanner(System.in);
 		
 		//prints menu
-		print.removeGrade();
-		print.Enter();
+		Print.removeGrade();
+		Print.Enter();
 		
 		String name = sc.nextLine();
 		
@@ -619,12 +625,12 @@ public class GradeBook {
 			return;
 		}
 		//prints  menu
-		print.clearScreen();
+		Print.clearScreen();
 		System.out.print("Printed Grades\n");
-		print.Line();
+		Print.Line();
 		for(int i = 0; i < array.length; i++) {
 			if(array[i] != null) {
-				print.printAssignment(array[i]);
+				Print.printAssignment(array[i]);
 			
 			}
 		}
@@ -645,7 +651,7 @@ public class GradeBook {
 		}
 		
 		//prints menu
-		print.clearScreen();
+		Print.clearScreen();
 		double counter = 0;
 		double sum = 0;
 		
@@ -662,7 +668,7 @@ public class GradeBook {
 		avg = (double)(round / 100.00);
 		
 		System.out.print("Printed Average of All Assignment Scores\n");
-		print.Line();
+		Print.Line();
 		System.out.print("\nAverage: " + avg + "\n");
 	}
 	
@@ -681,7 +687,7 @@ public class GradeBook {
 		}
 		
 		//prints menu
-		print.clearScreen();
+		Print.clearScreen();
 		double lowest = 100;
 		double highest = 0;
 		int lowestIndex = 0;
@@ -702,13 +708,13 @@ public class GradeBook {
 		}
 		
 		System.out.print("Printed Assignments with Highest and Lowest Score\n");
-		print.Line();
+		Print.Line();
 		System.out.print("\nHighest Score:\n\nName: " + array[highestIndex].getName());
 		System.out.print("\n\nScore: " + array[highestIndex].getScore() + "\n");
-		print.Line();
+		Print.Line();
 		System.out.print("\nLowest Score:\n\nName: " + array[lowestIndex].getName());
 		System.out.print("\n\nScore: " + array[lowestIndex].getScore() + "\n");
-		print.Line();
+		Print.Line();
 		
 	}
 	
@@ -727,7 +733,7 @@ public class GradeBook {
 		}
 		
 		//prints menu
-		print.clearScreen();
+		Print.clearScreen();
 		double counter = 0;
 		double sum = 0;
 		
@@ -744,7 +750,7 @@ public class GradeBook {
 		//error catcher if there are no quizzes
 		if(counter == 0) {
 			System.out.print("\n\nThere are no quiz grades.\n");
-			print.Line();
+			Print.Line();
 			System.out.print("\n");
 			return;
 		}
@@ -755,7 +761,7 @@ public class GradeBook {
 		avg = (double)(round / 100.00);
 		
 		System.out.print("Printed Average of All Quiz Scores\n");
-		print.Line();
+		Print.Line();
 		System.out.print("\nAverage: " + avg + "\n");
 		
 	}
@@ -775,15 +781,15 @@ public class GradeBook {
 		}
 		
 		//prints menu
-		print.clearScreen();
+		Print.clearScreen();
 		System.out.print("Printed Discussion Readings\n");
-		print.Line();
+		Print.Line();
 		int numLabel = 1;
 		
 		//locates discussions
 		for(int i = 0; i < array.length; i++) {
 			if(array[i] instanceof Discussion) {
-				System.out.print("\n" + numLabel + ": " + array[i].printOther());
+				System.out.print("\n" + numLabel + ": " + array[i].printCustom());
 				numLabel++;
 			}
 		}
@@ -794,7 +800,7 @@ public class GradeBook {
 		else {
 			System.out.print("\n");
 		}
-		print.Line();
+		Print.Line();
 	}
 	
 	
@@ -812,15 +818,15 @@ public class GradeBook {
 		}
 		
 		//prints menu
-		print.clearScreen();
+		Print.clearScreen();
 		System.out.print("Printed Program Concepts\n");
-		print.Line();
+		Print.Line();
 		int counter = 1;
 		
 		//locates programs
 		for(int i = 0; i < array.length; i++) {
 			if(array[i] instanceof Program) {
-				System.out.print("\n" + counter + ": " + array[i].printOther());
+				System.out.print("\n" + counter + ": " + array[i].printCustom());
 				counter++;
 			}
 		}
@@ -831,6 +837,6 @@ public class GradeBook {
 		else {
 			System.out.print("\n");
 		}
-		print.Line();
+		Print.Line();
 	}
 }

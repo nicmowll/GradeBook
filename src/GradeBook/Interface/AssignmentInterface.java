@@ -1,6 +1,11 @@
+/* Name: Nic Mowll
+ * Class: CodertoCraftsman
+ * Assignment: GradeBook Part 1
+ * Date: 10/18/2021
+ */
 package GradeBook.Interface;
 
-public interface AssignmentInterface {
+public interface AssignmentInterface { //Interface for different types of assignments
 	
 	public double getScore(); //returns score
 	public char getLetter(); //returns letter grade
@@ -11,5 +16,5 @@ public interface AssignmentInterface {
 	public void setName(String name); //sets name
 	public void setDueDate(String date); //sets due date
 	public String toString(); //returns string of vars
-	public String printOther(); //returns variable that is unique to certain assignment type
+	public String printCustom(); //returns String that contains variable unique to assignment object
 }

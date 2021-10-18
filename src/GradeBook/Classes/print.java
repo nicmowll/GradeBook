@@ -1,9 +1,14 @@
+/* Name: Nic Mowll
+ * Class: CodertoCraftsman
+ * Assignment: GradeBook Part 1
+ * Date: 10/18/2021
+ */
 package GradeBook.Classes;
 
 import GradeBook.Interface.*;
 import java.util.Scanner;
 
-public class print { //methods for referencing when needing to print things
+public class Print { //methods for strictly console based print statements. Mostly for looks
 	
 	public static void Menu() { //main menu
 		System.out.print("\nGradeBook Menu\n");
@@ -20,7 +25,7 @@ public class print { //methods for referencing when needing to print things
 		System.out.print("\nPlease specify which action you want to do or enter '0' to quit.");
 	}
 	
-	public static void exit() { //exit message
+	public static void exit() { //exit program message
 		clearScreen();
 		System.out.print("\nThank you for using the GradeBook\n");
 		Line();
@@ -82,7 +87,7 @@ public class print { //methods for referencing when needing to print things
 		Line();
 	}
 	
-	public static String finish() { //prints at end of action to ask user if done
+	public static String finishReEnter() { //prints at end of action to ask user if done and gives option to re-enter
 		Scanner sc = new Scanner(System.in);
 		System.out.print("\nEnter 'go' if you wish to proceed or 're-enter' to delete another: ");
 		String input = sc.nextLine();
