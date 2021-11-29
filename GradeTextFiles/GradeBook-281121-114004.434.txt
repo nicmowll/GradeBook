@@ -1,0 +1,2 @@
+Quiz	Architecture Quiz	82.6	B	2021-10-18	12
+Program	Using Enums in Java	100.0	A	2021-12-15	Enumerations

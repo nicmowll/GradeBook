@@ -1,17 +1,20 @@
 /* Name: Nic Mowll
  * Class: CodertoCraftsman
- * Assignment: GradeBook Part 1
- * Date: 10/18/2021
+ * Assignment: GradeBook Part 2
+ * Date: 11/29/2021
  */
 package GradeBook.Classes;
 
 import GradeBook.Interface.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Discussion implements AssignmentInterface{
 	private double score; //assignment score out of 100
 	private char letter; //letter grade
 	private String name; //name of assignment
-	private String dueDate; //due date in mm/dd/yyyy format
+	private Date dueDate; //due date in mm/dd/yyyy format
 	
 	private String reading; //reading material
 	
@@ -35,8 +38,18 @@ public class Discussion implements AssignmentInterface{
 
 	//returns due date
 	@Override
-	public String getDueDate() {
+	public Date getDueDate() {
 		return this.dueDate;
+	}
+	
+	//gets a formatted String date
+	@Override
+	public String getDueDateFormat() {
+		SimpleDateFormat ft = 
+		new SimpleDateFormat("MM-dd-Y");
+		
+		String dateString = "" + ft.format(this.dueDate);
+		return dateString;
 	}
 
 	//sets score
@@ -59,7 +72,7 @@ public class Discussion implements AssignmentInterface{
 
 	//sets due date
 	@Override
-	public void setDueDate(String date) {
+	public void setDueDate(Date date) {
 		this.dueDate = date;
 	}
 	
@@ -70,7 +83,7 @@ public class Discussion implements AssignmentInterface{
 				"\n  Score:        " + this.getScore() + "/100" +
 				"\n  Letter Grade: " + this.getLetter() +
 				"\n  Reading:      " + this.getReading() +
-				"\n  Due Date:     " + this.getDueDate() + "\n";
+				"\n  Due Date:     " + this.getDueDateFormat() + "\n";
 		
 		return str;
 	}
@@ -91,5 +104,21 @@ public class Discussion implements AssignmentInterface{
 		String reading = "" + this.getReading();
 		return reading;
 	}
-
+	
+	//returns string with assignment type
+	@Override
+	public String printAssType() {
+		String assType = "Discussion";
+		return assType;
+	}
+	
+	//gets a String formatted date for putting into files
+	@Override
+	public String getDueDateFormatToFile() {
+		SimpleDateFormat ft = 
+		new SimpleDateFormat("Y-MM-dd");
+				
+		String dateString = "" + ft.format(this.dueDate);
+		return dateString;
+	}
 }

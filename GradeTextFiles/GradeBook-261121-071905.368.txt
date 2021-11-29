@@ -1,0 +1,7 @@
+Quiz	Quiz1	87.5	B	2021-09-29	15
+Program	prog1	92.35	A	2021-10-03	Interfaces
+Discussion	Response on Self Driving Cars	98.0	A	2021-10-25	Self Driving Cars: the Dangers
+Quiz	Quiz2: Industrial Engineering Ch. 1	79.0	C	2021-10-15	18
+Program	Program Assignment 2	68.5	D	2021-11-02	Abstract Methods
+Quiz	Geometry Quiz	78.5	C	2021-11-29	75
+Discussion	Ethics of Cloning	96.9	A	2021-11-01	Human Cloning Article

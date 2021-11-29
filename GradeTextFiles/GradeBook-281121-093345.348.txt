@@ -1,0 +1,18 @@
+Quiz	Quiz1	87.5	B	2021-09-29	15
+Program	prog1	92.35	A	2021-10-03	Interfaces
+Discussion	Response on Self Driving Cars	98.0	A	2021-10-25	Self Driving Cars: the Dangers
+Quiz	Quiz2: Industrial Engineering Ch. 1	79.0	C	2021-10-15	18
+Program	Program Assignment 2	68.5	D	2021-11-02	Abstract Methods
+Quiz	Geometry Quiz	78.5	C	2021-11-29	75
+Discussion	Ethics of Cloning	96.9	A	2021-11-01	Human Cloning Article
+Discussion	discussion of poop	87.0	B	2021-12-02	Pooping
+Program	Programming first exercise	98.3	A	2021-12-20	Java
+Quiz	History Quiz	86.0	B	2021-11-19	25
+Program	Lab1	98.0	A	2021-12-12	Binary Search Trees
+Program	Lab2	78.0	C	2021-12-04	ArrayList Manipulation
+Quiz	Architecture Quiz	82.6	B	2021-10-18	12
+Program	Using Enums in Java	100.0	A	2021-12-15	Enumerations
+Quiz	Architecture Quiz	82.6	B	2021-10-19	13
+Program	TestProgram	78.0	C	2021-12-15	Test Concept
+Quiz	Architecture Quiz	82.6	B	2021-10-18	12
+Program	Using Enums in Java	100.0	A	2021-12-15	Enumerations
